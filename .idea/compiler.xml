@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="nova-service-api" />
+        <module name="nova-framework-common" />
+        <module name="testRabbitMq-producer" />
+        <module name="nova-services-manage-cms" />
+        <module name="testRabbitMq-consumer" />
+        <module name="nova-service-manage-course" />
+        <module name="nova-services-manage-cms-client" />
+        <module name="test-freemarker" />
+        <module name="nova-framework-utils" />
+        <module name="nova-govern-center" />
+        <module name="nova-framework-model" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="freemarker-test" target="1.8" />
+      <module name="nova-cms-" target="1.8" />
+      <module name="nova-framework-common" target="1.8" />
+      <module name="nova-framework-model" target="1.8" />
+      <module name="nova-framework-parent" target="1.8" />
+      <module name="nova-framework-utils" target="1.8" />
+      <module name="nova-govern-center" target="1.8" />
+      <module name="nova-service-api" target="1.8" />
+      <module name="nova-service-manage-course" target="1.8" />
+      <module name="nova-services-manage-cms" target="1.8" />
+      <module name="nova-services-manage-cms-client" target="1.8" />
+      <module name="test-freemarker" target="1.8" />
+      <module name="testRabbitMq-consumer" target="1.8" />
+      <module name="testRabbitMq-producer" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="freemarker-test" options="-parameters" />
+      <module name="nova-cms-" options="-parameters" />
+      <module name="nova-framework-common" options="-parameters" />
+      <module name="nova-framework-model" options="-parameters" />
+      <module name="nova-framework-utils" options="-parameters" />
+      <module name="nova-govern-center" options="-parameters" />
+      <module name="nova-service-api" options="-parameters" />
+      <module name="nova-service-manage-course" options="-parameters" />
+      <module name="nova-services-manage-cms" options="-parameters" />
+      <module name="nova-services-manage-cms-client" options="-parameters" />
+      <module name="test-freemarker" options="-parameters" />
+      <module name="testRabbitMq-consumer" options="-parameters" />
+      <module name="testRabbitMq-producer" options="-parameters" />
+    </option>
+  </component>
+</project>

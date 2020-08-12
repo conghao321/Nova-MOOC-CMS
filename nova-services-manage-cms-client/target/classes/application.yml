@@ -1,0 +1,23 @@
+server:
+  port:31000
+
+spring:
+  application:
+    name:nova-service-manage-cms-client
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: nova_cms
+    rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: guest
+      password: guest
+      virtualHost: /
+
+nova:
+  mq:
+    #cms客户端监控的队列名称(不同的客户端监控的队列不能重复)
+    queue: queue_cms_postpage_01
+    routingKey: 5a751fab6abb5044e0d19ea1 #此routingKey为门户站点ID
+

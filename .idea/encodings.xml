@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/nova-framework-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-framework-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-framework-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-framework-parent/testRabbitMq-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-framework-parent/testRabbitMq-producer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-framework-utils/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-govern-center/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-service-manage-course/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-service-manage-course/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-services-manage-cms-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-services-manage-cms-client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nova-services-manage-cms/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test-freemarker/src/main/java" charset="UTF-8" />
+  </component>
+</project>

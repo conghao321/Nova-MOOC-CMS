@@ -1,0 +1,31 @@
+server:
+  port: ${PORT:31001}
+spring:
+    application:
+      name: nova-service-manage-cms
+    data:
+      mongodb:
+        uri: mongodb://localhost:27017
+        database: nova_cms
+
+    freemarker:
+      cache: false #关闭模板缓存，方便测试 settings:
+      template_update_delay: 0
+
+      rabbitmq:
+        host: 127.0.0.1
+        port: 5672
+        username: guest
+        password: guest
+        virtualHost: /
+
+eureka:
+  client:
+    registerWithEureka: true #服务注册开关
+    fetchRegistry: true #服务发现开关
+    serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址，多个中间用逗号分隔
+      defaultZone: ${EUREKA_SERVER:http://localhost:50101/eureka/,http://localhost:50102/eureka/}
+  instance:
+    prefer-ip-address: true  #将自己的ip地址注册到Eureka服务中
+    ip-address: ${IP_ADDRESS:127.0.0.1}
+    instance-id: ${spring.application.name}:${server.port} #指定实例id
