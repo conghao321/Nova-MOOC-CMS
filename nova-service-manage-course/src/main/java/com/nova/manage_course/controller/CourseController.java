@@ -5,6 +5,8 @@ package com.nova.manage_course.controller;
  */
 
 import com.nova.api.course.CourseControllerApi;
+import com.nova.framework.domain.cms.CmsPage;
+import com.nova.framework.domain.cms.response.CmsPostPageResult;
 import com.nova.framework.domain.course.CourseBase;
 import com.nova.framework.domain.course.CourseMarket;
 import com.nova.framework.domain.course.Teachplan;
@@ -70,7 +72,8 @@ public class CourseController implements CourseControllerApi {
     }
 
     @GetMapping("/coursemarket/get/{courseId}")
-    public CourseMarket getCourseMarketById(@PathVariable("courseId") String courseId) { return courseService.getCourseMarketById(courseId);
+    public CourseMarket getCourseMarketById(@PathVariable("courseId") String courseId) {
+        return courseService.getCourseMarketById(courseId);
     }
 
     @Override
@@ -78,9 +81,9 @@ public class CourseController implements CourseControllerApi {
     public ResponseResult updateCourseMarket(@PathVariable("id") String id, @RequestBody CourseMarket
             courseMarket) {
         CourseMarket courseMarket_u = courseService.updateCourseMarket(id, courseMarket);
-        if(courseMarket_u!=null){
+        if (courseMarket_u != null) {
             return new ResponseResult(CommonCode.SUCCESS);
-        }else{
+        } else {
             return new ResponseResult(CommonCode.FAIL);
         }
     }
@@ -91,11 +94,18 @@ public class CourseController implements CourseControllerApi {
 
         return courseService.getCoruseView(id);
     }
+
     @Override
     @PostMapping("/preview/{id}")
     public CoursePublishResult preview(@PathVariable("id") String id) {
 
         return courseService.preview(id);
+    }
+
+    @Override
+    @PostMapping("/publish/{id}")
+    public CoursePublishResult publish(@PathVariable String id) {
+        return courseService.publish(id);
     }
 
 }

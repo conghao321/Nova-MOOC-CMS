@@ -8,16 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="nova-service-api" />
-        <module name="nova-framework-common" />
+        <module name="nova-framework-model" />
         <module name="testRabbitMq-producer" />
         <module name="nova-services-manage-cms" />
         <module name="testRabbitMq-consumer" />
+        <module name="nova-service-search" />
         <module name="nova-service-manage-course" />
         <module name="nova-services-manage-cms-client" />
         <module name="test-freemarker" />
         <module name="nova-framework-utils" />
         <module name="nova-govern-center" />
-        <module name="nova-framework-model" />
+        <module name="nova-framework-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -30,6 +31,7 @@
       <module name="nova-govern-center" target="1.8" />
       <module name="nova-service-api" target="1.8" />
       <module name="nova-service-manage-course" target="1.8" />
+      <module name="nova-service-search" target="1.8" />
       <module name="nova-services-manage-cms" target="1.8" />
       <module name="nova-services-manage-cms-client" target="1.8" />
       <module name="test-freemarker" target="1.8" />
@@ -47,6 +49,7 @@
       <module name="nova-govern-center" options="-parameters" />
       <module name="nova-service-api" options="-parameters" />
       <module name="nova-service-manage-course" options="-parameters" />
+      <module name="nova-service-search" options="-parameters" />
       <module name="nova-services-manage-cms" options="-parameters" />
       <module name="nova-services-manage-cms-client" options="-parameters" />
       <module name="test-freemarker" options="-parameters" />

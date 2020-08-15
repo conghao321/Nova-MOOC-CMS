@@ -13,47 +13,51 @@ import com.nova.framework.model.response.QueryResponseResult;
 import com.nova.framework.model.response.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /*
  * @Author:conghao
  * @description:
  */
 
-@Api(value = "课程管理接口,提供课程的增删改查")
+@Api(value = "Course management Api, provides CRUD of course info.")
 public interface CourseControllerApi {
-    @ApiOperation("课程计划查询")
+    @ApiOperation("Query course plan")
     public TeachplanNode findTeachplanList(String courseId);
 
-    @ApiOperation("添加课程计划")
+    @ApiOperation("Add course plan")
     public ResponseResult addTeachplanList(Teachplan teachplan);
 
-    @ApiOperation("查询我的课程列表")
+    @ApiOperation("Query course's list")
     public QueryResponseResult<CourseInfo> findCourseList(
             int page,
             int size,
             CourseListRequest courseListRequest
     );
 
-    @ApiOperation("添加课程基础信息")
+    @ApiOperation("Add course basic info")
     public AddCourseResult addCourseBase(CourseBase courseBase);
 
-    @ApiOperation("获取课程基础信息")
+    @ApiOperation("Get course basic info")
     public CourseBase getCourseBaseById(String courseId) throws RuntimeException;
 
 
-    @ApiOperation("更新课程基础信息")
+    @ApiOperation("Update course basic info")
     public ResponseResult updateCourseBase(String id, CourseBase courseBase);
 
 
-    @ApiOperation("获取课程营销信息")
+    @ApiOperation("Get course's marketing info")
     public CourseMarket getCourseMarketById(String courseId);
 
-    @ApiOperation("更新课程营销信息")
+    @ApiOperation("Update course's marketing info")
     public ResponseResult updateCourseMarket(String id,CourseMarket courseMarket);
 
-    @ApiOperation("课程视图查询")
+    @ApiOperation("Query CourseView")
     public CourseView courseView(String id);
 
-    @ApiOperation("预览课程")
+    @ApiOperation("Preview course")
     public CoursePublishResult preview(String id);
+
+    @ApiOperation("Post course")
+    public CoursePublishResult publish(@PathVariable String id);
 }

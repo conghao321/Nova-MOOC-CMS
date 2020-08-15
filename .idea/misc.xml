@@ -20,6 +20,7 @@
         <option value="$PROJECT_DIR$/nova-services-manage-cms-client/pom.xml" />
         <option value="$PROJECT_DIR$/xc-service-manage-course/pom.xml" />
         <option value="$PROJECT_DIR$/nova-service-manage-course/pom.xml" />
+        <option value="$PROJECT_DIR$/nova-service-search/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

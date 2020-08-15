@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/nova-govern-center/nova-govern-center.iml" filepath="$PROJECT_DIR$/nova-govern-center/nova-govern-center.iml" />
       <module fileurl="file://$PROJECT_DIR$/nova-service-api/nova-service-api.iml" filepath="$PROJECT_DIR$/nova-service-api/nova-service-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/nova-service-manage-course/nova-service-manage-course.iml" filepath="$PROJECT_DIR$/nova-service-manage-course/nova-service-manage-course.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nova-service-search/nova-service-search.iml" filepath="$PROJECT_DIR$/nova-service-search/nova-service-search.iml" />
       <module fileurl="file://$PROJECT_DIR$/nova-services-manage-cms/nova-services-manage-cms.iml" filepath="$PROJECT_DIR$/nova-services-manage-cms/nova-services-manage-cms.iml" />
       <module fileurl="file://$PROJECT_DIR$/nova-services-manage-cms-client/nova-services-manage-cms-client.iml" filepath="$PROJECT_DIR$/nova-services-manage-cms-client/nova-services-manage-cms-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/services.iml" filepath="$PROJECT_DIR$/.idea/services.iml" />

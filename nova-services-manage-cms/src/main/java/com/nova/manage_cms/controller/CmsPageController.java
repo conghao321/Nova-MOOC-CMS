@@ -4,6 +4,7 @@ import com.nova.api.cms.CmsPageControllerApi;
 import com.nova.framework.domain.cms.CmsPage;
 import com.nova.framework.domain.cms.request.QueryPageRequest;
 import com.nova.framework.domain.cms.response.CmsPageResult;
+import com.nova.framework.domain.cms.response.CmsPostPageResult;
 import com.nova.framework.model.response.QueryResponseResult;
 import com.nova.framework.model.response.ResponseResult;
 import com.nova.manage_cms.service.PageService;
@@ -63,6 +64,11 @@ public class CmsPageController implements CmsPageControllerApi {
     @PostMapping("/save")
     public CmsPageResult save(@RequestBody CmsPage cmsPage) {
         return pageService.save(cmsPage); }
+
+    @Override
+    @PostMapping("/postPageQuick")
+    public CmsPostPageResult postPageQuick(@RequestBody CmsPage cmsPage) {
+        return pageService.postPageQuick(cmsPage); }
 
 
 }

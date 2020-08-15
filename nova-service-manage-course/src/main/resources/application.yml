@@ -46,3 +46,4 @@ course‐publish:
   pageWebPath: /course/detail/
   pagePhysicalPath: /Users/conghao/codes/javaCode/novaOnlineMooc/resource/static/course/detail
   dataUrlPre: http://localhost:31200/course/courseview/
+

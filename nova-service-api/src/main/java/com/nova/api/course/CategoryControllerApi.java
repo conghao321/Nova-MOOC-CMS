@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Api(value = "课程分类管理",tags = {"课程分类管理"})
+@Api(value = "Course Category Management",tags = {"Course Category Management"})
 public interface CategoryControllerApi {
-    @ApiOperation("查询分类")
+    @ApiOperation("Query course category")
     public CategoryNode findList();
 }

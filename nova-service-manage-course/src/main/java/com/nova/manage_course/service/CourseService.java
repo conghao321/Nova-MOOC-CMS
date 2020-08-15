@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.netflix.discovery.converters.Auto;
 import com.nova.framework.domain.cms.CmsPage;
 import com.nova.framework.domain.cms.response.CmsPageResult;
+import com.nova.framework.domain.cms.response.CmsPostPageResult;
 import com.nova.framework.domain.course.CourseBase;
 import com.nova.framework.domain.course.CourseMarket;
 import com.nova.framework.domain.course.CoursePic;
@@ -294,4 +295,56 @@ public class CourseService {
         ExceptionCast.cast(CourseCode.COURSE_PUBLISH_COURSEIDISNULL);
         return null;
     }
+
+    //课程发布
+    @Transactional
+    public CoursePublishResult publish(String courseId) {
+        //课程信息
+        CourseBase one = this.findCourseBaseById(courseId); //发布课程详情页面
+        CmsPostPageResult cmsPostPageResult = publish_page(courseId);
+        if (!cmsPostPageResult.isSuccess()) {
+            ExceptionCast.cast(CommonCode.FAIL);
+        }
+        //更新课程状态
+        CourseBase courseBase = saveCoursePubState(courseId);
+        //课程索引...
+        //课程缓存...
+        //页面url
+        String pageUrl = cmsPostPageResult.getPageUrl();
+        return new CoursePublishResult(CommonCode.SUCCESS, pageUrl);
+    }
+
+    //更新课程发布状态
+    private CourseBase saveCoursePubState(String courseId) {
+        CourseBase courseBase = this.findCourseBaseById(courseId);
+        //更新发布状态
+        courseBase.setStatus("202002");
+        CourseBase save = courseBaseRepository.save(courseBase);
+        return save;
+    }
+
+    //发布课程正式页面
+    public CmsPostPageResult publish_page(String courseId) {
+        CourseBase one = this.findCourseBaseById(courseId);
+        //发布课程预览页面
+        CmsPage cmsPage = new CmsPage();
+        //站点
+        cmsPage.setSiteId(publish_siteId);
+        // 课程预览站点 //模板
+        cmsPage.setTemplateId(publish_templateId);
+        //页面名称
+        cmsPage.setPageName(courseId + ".html");
+        //页面别名
+        cmsPage.setPageAliase(one.getName());
+        //页面访问路径
+        cmsPage.setPageWebPath(publish_page_webpath);
+        // 页面存储路径
+        cmsPage.setPagePhysicalPath(publish_page_physicalpath);
+        //数据url
+        cmsPage.setDataUrl(publish_dataUrlPre+courseId);
+        //发布页面
+        CmsPostPageResult cmsPostPageResult = cmsPageClient.postPageQuick(cmsPage);
+        return cmsPostPageResult;
+    }
+
 }
