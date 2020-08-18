@@ -50,7 +50,7 @@ public class TestIndex {
         //设置参数
         createIndexRequest.settings(Settings.builder().put("number_of_shards","1").put("number_of_replicas","0"));
         //指定映射
-        createIndexRequest.mapping("doc"," {\n" +
+        createIndexRequest.mapping("_doc"," {\n" +
                 " \t\"properties\": {\n" +
                 "            \"studymodel\":{\n" +
                 "             \"type\":\"keyword\"\n" +
