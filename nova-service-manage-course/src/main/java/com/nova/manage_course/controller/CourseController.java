@@ -10,6 +10,7 @@ import com.nova.framework.domain.cms.response.CmsPostPageResult;
 import com.nova.framework.domain.course.CourseBase;
 import com.nova.framework.domain.course.CourseMarket;
 import com.nova.framework.domain.course.Teachplan;
+import com.nova.framework.domain.course.TeachplanMedia;
 import com.nova.framework.domain.course.ext.CourseInfo;
 import com.nova.framework.domain.course.ext.CourseView;
 import com.nova.framework.domain.course.ext.TeachplanNode;
@@ -107,6 +108,11 @@ public class CourseController implements CourseControllerApi {
     public CoursePublishResult publish(@PathVariable String id) {
         return courseService.publish(id);
     }
+
+    @Override
+    @PostMapping("/savemedia")
+    public ResponseResult savemedia(@RequestBody TeachplanMedia teachplanMedia) {
+        return courseService.saveMedia(teachplanMedia); }
 
 }
 

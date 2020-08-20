@@ -3,6 +3,7 @@ package com.nova.api.course;
 import com.nova.framework.domain.course.CourseBase;
 import com.nova.framework.domain.course.CourseMarket;
 import com.nova.framework.domain.course.Teachplan;
+import com.nova.framework.domain.course.TeachplanMedia;
 import com.nova.framework.domain.course.ext.CourseInfo;
 import com.nova.framework.domain.course.ext.CourseView;
 import com.nova.framework.domain.course.ext.TeachplanNode;
@@ -60,4 +61,7 @@ public interface CourseControllerApi {
 
     @ApiOperation("Post course")
     public CoursePublishResult publish(@PathVariable String id);
+
+    @ApiOperation("Save media-recourse info")
+    public ResponseResult savemedia(TeachplanMedia teachplanMedia);
 }

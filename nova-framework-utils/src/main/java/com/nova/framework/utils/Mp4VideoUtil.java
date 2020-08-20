@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class Mp4VideoUtil extends VideoUtil {
 
-    String ffmpeg_path = "D:\\Program Files\\ffmpeg-20180227-fa0c9d6-win64-static\\bin\\ffmpeg.exe";//ffmpeg的安装位置
-    String video_path = "D:\\BaiduNetdiskDownload\\test1.avi";
-    String mp4_name = "test1.mp4";
-    String mp4folder_path = "D:/BaiduNetdiskDownload/Movies/test1/";
+    String ffmpeg_path; //ffmpeg的安装位置
+    String video_path;
+    String mp4_name;
+    String mp4folder_path;
     public Mp4VideoUtil(String ffmpeg_path, String video_path, String mp4_name, String mp4folder_path){
         super(ffmpeg_path);
         this.ffmpeg_path = ffmpeg_path;
@@ -35,14 +35,9 @@ public class Mp4VideoUtil extends VideoUtil {
     public String generateMp4(){
         //清除已生成的mp4
         clear_mp4(mp4folder_path+mp4_name);
-        /*
-        ffmpeg.exe -i  lucene.avi -c:v libx264 -s 1280x720 -pix_fmt yuv420p -b:a 63k -b:v 753k -r 18 .\lucene.mp4
-         */
         List<String> commend = new ArrayList<String>();
-        //commend.add("D:\\Program Files\\ffmpeg-20180227-fa0c9d6-win64-static\\bin\\ffmpeg.exe");
         commend.add(ffmpeg_path);
         commend.add("-i");
-//        commend.add("D:\\BaiduNetdiskDownload\\test1.avi");
         commend.add(video_path);
         commend.add("-c:v");
         commend.add("libx264");

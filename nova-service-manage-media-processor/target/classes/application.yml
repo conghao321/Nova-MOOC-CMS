@@ -1,0 +1,22 @@
+server:
+  port: 31450
+spring:
+  application:
+    name: nova-service-manage-media-processor
+  data:
+    mongodb:
+      uri:  mongodb://localhost:27017
+      database: xc_media
+#rabbitmq配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+xc-service-manage-media:
+  mq:
+    queue-media-video-processor: queue_media_video_processor
+    routingkey-media-video: routingkey_media_video
+  video-location: /Users/conghao/codes/javaCode/novaOnlineMooc/resource/videos/
+  ffmpeg-path: usr/local/Cellar/ffmpeg/4.3.1

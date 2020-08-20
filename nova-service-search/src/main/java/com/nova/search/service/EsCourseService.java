@@ -127,7 +127,7 @@ public class EsCourseService {
             //获取响应结果
             SearchHits hits = searchResponse.getHits();
             //匹配的总记录数
-            TotalHits totalHits = hits.getTotalHits();
+            long totalHits= hits.getTotalHits().value;
             SearchHit[] searchHits = hits.getHits();
             for(SearchHit hit:searchHits){
                 CoursePub coursePub = new CoursePub();

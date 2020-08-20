@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.nova.manage_course.dao.TeachplanMapper">
 
-    <resultMap type="com.nova.framework.domain.course.ext.TeachplanNode" id="teachplanMap">
-        <id property="id" column="one_id"/>
-        <result property="pname" column="one_name"/>
-
+    <resultMap id="teachplanMap" type="com.nova.framework.domain.course.ext.TeachplanNode">
+        <id column="one_id" property="id"/>
+        <result column="one_pname" property="pname"/>
         <collection property="children" ofType="com.nova.framework.domain.course.ext.TeachplanNode">
-            <id property="id" column="two_id"/>
-            <result property="pname" column="two_name"/>
+            <id column="two_id" property="id"/>
+            <result column="two_pname" property="pname"/>
             <collection property="children" ofType="com.nova.framework.domain.course.ext.TeachplanNode">
-                <id property="id" column="three_id"/>
-                <result property="pname" column="three_name"/>
+                <id column="three_id" property="id"/>
+                <result column="three_pname" property="pname"/>
+                <result column="media_id" property="mediaId"></result>
+                <result column="media_fileoriginalname" property="mediaFileOriginalName"></result>
             </collection>
         </collection>
     </resultMap>
 
-
-    <select id="selectList" resultMap="teachplanMap" parameterType="java.lang.String">
+    <select id="selectList" parameterType="java.lang.String"
+            resultMap="teachplanMap">
         SELECT
-        a.id one_id, a.pname one_name, b.id two_id, b.pname two_name, c.id three_id, c.pname three_name
+        a.id one_id,
+        a.pname one_pname,
+        b.id two_id,
+        b.pname two_pname,
+        c.id three_id,
+        c.pname three_pname,
+        teachplan_media.media_id,
+        teachplan_media.media_fileoriginalname
         FROM
-        teachplan a LEFT JOIN teachplan b
-        ON a.id = b.parentid LEFT JOIN teachplan c
-        ON b.id = c.parentid
+        teachplan a
+        LEFT JOIN teachplan b
+        ON b.parentid = a.id
+        LEFT JOIN teachplan c
+        ON c.parentid = b.id
+        LEFT JOIN teachplan_media on c.id = teachplan_media.teachplan_id
         WHERE a.parentid = '0'
-        <if test="_parameter!=null and _parameter!=''">
-            and a.courseid=#{courseId}
+        <if test="_parameter !=null and _parameter!=''">
+            AND a.courseid = #{courseId}
         </if>
-        ORDER BY a.orderby, b.orderby, c.orderby
+        ORDER BY a.orderby,
+        b.orderby,
+        c.orderby
     </select>
-</mapper>  
+</mapper>
