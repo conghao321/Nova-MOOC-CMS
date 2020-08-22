@@ -7,6 +7,7 @@
         <module>testRabbitMq-producer</module>
         <module>../nova-govern-center</module>
         <module>../nova-service-manage-media-processor</module>
+        <module>../nova-service-learning</module>
     </modules>
 
 
