@@ -5,28 +5,26 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
 
 /**
- * Created by admin on 2018/3/19.
+ * Created by admin on 2018/2/10.
  */
 @Data
 @ToString
 @Entity
-@Table(name="xc_permission")
+@Table(name="xc_company_user")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class XcPermission {
-
+public class NovaCompanyUser implements Serializable {
+    private static final long serialVersionUID = -916357110051689786L;
     @Id
     @GeneratedValue(generator = "jpa-uuid")
     @Column(length = 32)
     private String id;
-    @Column(name="roleId")
-    private String role_id;
-    @Column(name="menuId")
-    private String menu_id;
-    @Column(name="createTime")
-    private Date create_time;
+    @Column(name="company_id")
+    private String companyId;
+    @Column(name="user_id")
+    private String userId;
 
 
 }

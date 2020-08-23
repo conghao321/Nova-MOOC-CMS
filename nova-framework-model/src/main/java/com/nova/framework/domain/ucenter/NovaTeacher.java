@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Entity
 @Table(name="xc_teacher")
 @GenericGenerator(name = "jpa-assigned", strategy = "assigned")
-public class XcTeacher implements Serializable {
+public class NovaTeacher implements Serializable {
     private static final long serialVersionUID = -916357110051689786L;
     @Id
     @GeneratedValue(generator = "jpa-assigned")

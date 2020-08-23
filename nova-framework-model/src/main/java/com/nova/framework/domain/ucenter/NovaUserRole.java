@@ -13,29 +13,21 @@ import java.util.Date;
 @Data
 @ToString
 @Entity
-@Table(name="xc_user")
+@Table(name="xc_user_role")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class XcUser {
+public class NovaUserRole {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")
     @Column(length = 32)
     private String id;
-    private String username;
-    private String password;
-    private String salt;
-    private String name;
-    private String utype;
-    private String birthday;
-    private String userpic;
-    private String sex;
-    private String email;
-    private String phone;
-    private String status;
+
+    @Column(name="user_id")
+    private String userId;
+    @Column(name="role_id")
+    private String roleId;
+    private String creator;
     @Column(name="create_time")
     private Date createTime;
-    @Column(name="update_time")
-    private Date updateTime;
-
 
 }

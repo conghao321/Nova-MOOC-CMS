@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name="xc_role")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class XcRole {
+public class NovaRole {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")

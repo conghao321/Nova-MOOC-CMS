@@ -1,7 +1,7 @@
 package com.nova.framework.domain.ucenter.ext;
 
-import com.nova.framework.domain.ucenter.XcMenu;
-import com.nova.framework.domain.ucenter.XcUser;
+import com.nova.framework.domain.ucenter.NovaMenu;
+import com.nova.framework.domain.ucenter.NovaUser;
 import lombok.Data;
 import lombok.ToString;
 
@@ -12,10 +12,10 @@ import java.util.List;
  */
 @Data
 @ToString
-public class XcUserExt extends XcUser {
+public class NovaUserExt extends NovaUser {
 
     //权限信息
-    private List<XcMenu> permissions;
+    private List<NovaMenu> permissions;
 
     //企业信息
     private String companyId;
