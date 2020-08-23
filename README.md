@@ -8,22 +8,17 @@ is always my dream.
 
 I learn a lot from them. 
 
+Develop steps:
 
-Basically, a application based on SpringBoot and Microservices will include below
-parts:
+5- basic modules:
+parent,common,api, model,utils.
 
-parent-module:used only to version and dependencies management.
 
-utils-module: used to store some utils class.
-
-api-module: an independent module to build design and implement apis.
-
-model-module: obey MVC-development rules, to store data's model.
-
-common: build some common and overall classes, including exceptions, some error code, request and response code...
-
-Additionally, during our development process, we will append and revise some new modules into our architecture.
-
-The core-part of this project is CMS service, so we build it at first.
- After that, all other services are used to interact with CMS module.
-
+CMS: content-management-services
+course:course content-management 
+course-client:course-page management 
+govern: spring-cloud,eureka
+search: building-indices 
+Media: management, upload, server, processor
+Learning: learning-center
+User auth : token, JWT,redis
