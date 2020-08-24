@@ -53,7 +53,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         String password = userExt.getPassword();
-        //这里暂时使用静态密码
         //用户权限，这里暂时使用静态数据，最终会从数据库读取
         //从数据库获取权限
         List<NovaMenu> permissions = userExt.getPermissions();
@@ -67,10 +66,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 password,
                 AuthorityUtils.commaSeparatedStringToAuthorityList(user_permission_string));
         userDetails.setId(userExt.getId());
-        userDetails.setUtype(userExt.getUType());//用户类型
-        userDetails.setCompanyId(userExt.getCompanyId());//所属企业
-        userDetails.setName(userExt.getName());//用户名称
-        userDetails.setUserpic(userExt.getUserPic());//用户头像
+        //用户类型
+        userDetails.setUtype(userExt.getUtype());
+        userDetails.setCompanyId(userExt.getCompanyId());
+        userDetails.setName(userExt.getName());
+        // 用户头像
+        userDetails.setUserpic(userExt.getUserpic());
         return userDetails;
     }
 }
