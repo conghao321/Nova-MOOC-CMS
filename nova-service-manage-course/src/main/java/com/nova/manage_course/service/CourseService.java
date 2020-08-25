@@ -7,6 +7,7 @@ package com.nova.manage_course.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.alibaba.fastjson.JSON;
+import com.netflix.discovery.converters.Auto;
 import com.nova.framework.domain.cms.CmsPage;
 import com.nova.framework.domain.cms.response.CmsPageResult;
 import com.nova.framework.domain.cms.response.CmsPostPageResult;
@@ -68,12 +69,35 @@ public class CourseService {
     @Autowired
     TeachplanMediaRepository teachplanMediaRepository;
 
+    @Autowired
+    CoursePicRepository coursePicRepository;
+
+    @Autowired
+    TeachplanMediaPubRepository teachplanMediaPubRepository;
+
+
+//    @Autowired
+//    CourseTeacherRepository courseTeacherRepository;
+
+    @Value("${course‐publish.dataUrlPre}")
+    private String publish_dataUrlPre;
+    @Value("${course‐publish.pagePhysicalPath}")
+    private String publish_page_physicalpath;
+    @Value("${course‐publish.pageWebPath}")
+    private String publish_page_webpath;
+    @Value("${course‐publish.siteId}")
+    private String publish_siteId;
+    @Value("${course‐publish.templateId}")
+    private String publish_templateId;
+    @Value("${course‐publish.previewUrl}")
+    private String previewUrl;
+
+
     //查询课程计划
     public TeachplanNode findTeachplanList(String courseId) {
         return teachplanMapper.selectList(courseId);
     }
 
-    //mysql transactional
     @Transactional
     public ResponseResult addTeachplan(Teachplan teachplan) {
 
@@ -112,7 +136,7 @@ public class CourseService {
     }
 
     //获取课程的根结点
-    public String getTeachplanRoot(String courseId) {
+    private String getTeachplanRoot(String courseId) {
         Optional<CourseBase> optional = courseBaseRepository.findById(courseId);
         if (!optional.isPresent()) {
             return null;
@@ -130,17 +154,22 @@ public class CourseService {
             teachplan.setPname(courseBase.getName());
             teachplanRepository.save(teachplan);
             return teachplan.getId();
-
         }
         //返回根结点的id
         return teachplanList.get(0).getId();
     }
 
-    public QueryResponseResult<CourseInfo> findCourseList(int page, int size, CourseListRequest
-            courseListRequest) {
+    //课程列表分页查询
+    public QueryResponseResult<CourseInfo> findCourseList(String companyId,int page, int size, CourseListRequest courseListRequest) {
         if (courseListRequest == null) {
             courseListRequest = new CourseListRequest();
         }
+
+        //企业id
+        courseListRequest.setCompanyId(companyId);
+        //将companyId传给dao
+        courseListRequest.setCompanyId(companyId);
+
         if (page <= 0) {
             page = 0;
         }
@@ -150,15 +179,16 @@ public class CourseService {
         //设置分页参数
         PageHelper.startPage(page, size);
         //分页查询
-        Page<CourseInfo> courseListPage = courseMapper.findCourseListPage(courseListRequest); //查询列表
+        Page<CourseInfo> courseListPage = courseMapper.findCourseListPage(courseListRequest);
+        //查询列表
         List<CourseInfo> list = courseListPage.getResult();
         //总记录数
         long total = courseListPage.getTotal();
         //查询结果集
-        QueryResult<CourseInfo> courseIncfoQueryResult = new QueryResult<CourseInfo>();
-        courseIncfoQueryResult.setList(list);
-        courseIncfoQueryResult.setTotal(total);
-        return new QueryResponseResult<CourseInfo>(CommonCode.SUCCESS, courseIncfoQueryResult);
+        QueryResult<CourseInfo> courseInfoQueryResult = new QueryResult<CourseInfo>();
+        courseInfoQueryResult.setList(list);
+        courseInfoQueryResult.setTotal(total);
+        return new QueryResponseResult<>(CommonCode.SUCCESS, courseInfoQueryResult);
     }
 
     //添加课程提交
@@ -170,7 +200,7 @@ public class CourseService {
         return new AddCourseResult(CommonCode.SUCCESS, courseBase.getId());
     }
 
-    public CourseBase getCoursebaseById(String courseId) {
+    public CourseBase getCourseBaseById(String courseId) {
         Optional<CourseBase> optional = courseBaseRepository.findById(courseId);
         if (optional.isPresent()) {
             return optional.get();
@@ -179,8 +209,8 @@ public class CourseService {
     }
 
     @Transactional
-    public ResponseResult updateCoursebase(String id, CourseBase courseBase) {
-        CourseBase one = this.getCoursebaseById(id);
+    public ResponseResult updateCourseBase(String id, CourseBase courseBase) {
+        CourseBase one = this.getCourseBaseById(id);
         if (one == null) {
             //抛出异常..
         }
@@ -198,7 +228,7 @@ public class CourseService {
 
     public CourseMarket getCourseMarketById(String courseId) {
         Optional<CourseMarket> optional = courseMarketRepository.findById(courseId);
-        if (!optional.isPresent()) {
+        if (optional.isPresent()) {
             return optional.get();
         }
         return null;
@@ -218,15 +248,56 @@ public class CourseService {
         } else {
             //添加课程营销信息
             one = new CourseMarket();
-            BeanUtils.copyProperties(courseMarket, one); //设置课程id
+            BeanUtils.copyProperties(courseMarket, one);
+            //设置课程id
             one.setId(id);
             courseMarketRepository.save(one);
         }
         return one;
     }
 
+    //添加课程图片
+    @Transactional
+    public ResponseResult saveCoursePic(String courseId, String pic) {
+        //查询课程图片
+        Optional<CoursePic> picOptional = coursePicRepository.findById(courseId);
+        CoursePic coursePic = null;
+        if (picOptional.isPresent()) {
+            coursePic = picOptional.get();
+        }
+        //没有课程图片则新建对象
+        if (coursePic == null) {
+            coursePic = new CoursePic();
+        }
+        coursePic.setCourseid(courseId);
+        coursePic.setPic(pic);
+        //保存课程图片
+        coursePicRepository.save(coursePic);
+        return new ResponseResult(CommonCode.SUCCESS);
+    }
+
+    //查询课程图片
+    public CoursePic findCoursePic(String courseId) {
+        Optional<CoursePic> optional = coursePicRepository.findById(courseId);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        return null;
+    }
+
+    //删除课程图片
+    @Transactional
+    public ResponseResult deleteCoursePic(String courseId) {
+        //执行删除，返回1表示删除成功，返回0表示删除失败
+        long result = coursePicRepository.deleteByCourseid(courseId);
+        if (result > 0) {
+            return new ResponseResult(CommonCode.SUCCESS);
+        }
+        return new ResponseResult(CommonCode.FAIL);
+    }
+
     //课程视图查询
-    public CourseView getCoruseView(String id) {
+    public CourseView getCourseView(String id) {
         CourseView courseView = new CourseView();
         //查询课程基本信息
         Optional<CourseBase> optional = courseBaseRepository.findById(id);
@@ -240,27 +311,19 @@ public class CourseService {
             CourseMarket courseMarket = courseMarketOptional.get();
             courseView.setCourseMarket(courseMarket);
         }
-
+        //查询课程图片信息
+        Optional<CoursePic> picOptional = coursePicRepository.findById(id);
+        if (picOptional.isPresent()) {
+            CoursePic coursePic = picOptional.get();
+            courseView.setCoursePic(picOptional.get());
+        }
         //查询课程计划信息
         TeachplanNode teachplanNode = teachplanMapper.selectList(id);
         courseView.setTeachplanNode(teachplanNode);
         return courseView;
     }
 
-    @Value("${course‐publish.dataUrlPre}")
-    private String publish_dataUrlPre;
-    @Value("${course‐publish.pagePhysicalPath}")
-    private String publish_page_physicalpath;
-    @Value("${course‐publish.pageWebPath}")
-    private String publish_page_webpath;
-    @Value("${course‐publish.siteId}")
-    private String publish_siteId;
-    @Value("${course‐publish.templateId}")
-    private String publish_templateId;
-    @Value("${course‐publish.previewUrl}")
-    private String previewUrl;
-
-    //Course Preview....
+    //课程预览
     public CoursePublishResult preview(String courseId) {
         CourseBase courseBase = this.findCourseBaseById(courseId);
         //发布课程预览页面
@@ -292,16 +355,14 @@ public class CourseService {
     }
 
     //根据id查询课程基本信息
-    public CourseBase findCourseBaseById(String courseId) {
+    private CourseBase findCourseBaseById(String courseId) {
         Optional<CourseBase> baseOptional = courseBaseRepository.findById(courseId);
         if (baseOptional.isPresent()) {
-            CourseBase courseBase = baseOptional.get();
-            return courseBase;
+            return baseOptional.get();
         }
-        ExceptionCast.cast(CourseCode.COURSE_PUBLISH_COURSEIDISNULL);
+        ExceptionCast.cast(CourseCode.COURSE_GET_NOTEXISTS);
         return null;
     }
-
 
     //课程发布
     @Transactional
@@ -314,14 +375,14 @@ public class CourseService {
 
         //保存课程的发布状态为“已发布”
         CourseBase courseBase = this.saveCoursePubState(courseId);
-        if (courseBase == null) {
-            return new CoursePublishResult(CommonCode.FAIL, null);
+        if(courseBase == null){
+            return new CoursePublishResult(CommonCode.FAIL,null);
         }
         //保存课程索引信息
         //先创建一个coursePub对象
         CoursePub coursePub = createCoursePub(courseId);
         //将coursePub对象保存到数据库
-        saveCoursePub(courseId, coursePub);
+        saveCoursePub(courseId,coursePub);
         //页面url
         String pageUrl = cmsPostPageResult.getPageUrl();
         //向teachplanMediaPub中保存课程媒资信息
@@ -329,32 +390,49 @@ public class CourseService {
         return new CoursePublishResult(CommonCode.SUCCESS, pageUrl);
     }
 
+    //向teachplanMediaPub中保存课程媒资信息
+    private void saveTeachplanMediaPub(String courseId){
+        //先删除teachplanMediaPub中的数据
+        teachplanMediaPubRepository.deleteByCourseId(courseId);
+        //从teachplanMedia中查询
+        List<TeachplanMedia> teachplanMediaList = teachplanMediaRepository.findByCourseId(courseId);
+        List<TeachplanMediaPub> teachplanMediaPubs = new ArrayList<>();
+        //将teachplanMediaList数据放到teachplanMediaPubs中
+        for(TeachplanMedia teachplanMedia:teachplanMediaList){
+            TeachplanMediaPub teachplanMediaPub = new TeachplanMediaPub();
+            BeanUtils.copyProperties(teachplanMedia,teachplanMediaPub);
+            //添加时间戳
+            teachplanMediaPub.setTimestamp(new Date());
+            teachplanMediaPubs.add(teachplanMediaPub);
+        }
+        //将teachplanMediaList插入到teachplanMediaPub
+        teachplanMediaPubRepository.saveAll(teachplanMediaPubs);
+    }
 
     //更新课程发布状态
     private CourseBase saveCoursePubState(String courseId) {
         CourseBase courseBase = this.findCourseBaseById(courseId);
         //更新发布状态
         courseBase.setStatus("202002");
-        CourseBase save = courseBaseRepository.save(courseBase);
-        return save;
+        return courseBaseRepository.save(courseBase);
     }
 
     //发布课程正式页面
-    public CmsPostPageResult publish_page(String courseId) {
-        CourseBase one = this.findCourseBaseById(courseId);
+    private CmsPostPageResult publish_page(String courseId) {
+        CourseBase courseBase = this.findCourseBaseById(courseId);
         //发布课程预览页面
         CmsPage cmsPage = new CmsPage();
         //站点
-        cmsPage.setSiteId(publish_siteId);
-        // 课程预览站点 //模板
+        cmsPage.setSiteId(publish_siteId);//课程预览站点
+        //模板
         cmsPage.setTemplateId(publish_templateId);
         //页面名称
         cmsPage.setPageName(courseId + ".html");
         //页面别名
-        cmsPage.setPageAliase(one.getName());
+        cmsPage.setPageAliase(courseBase.getName());
         //页面访问路径
         cmsPage.setPageWebPath(publish_page_webpath);
-        // 页面存储路径
+        //页面存储路径
         cmsPage.setPagePhysicalPath(publish_page_physicalpath);
         //数据url
         cmsPage.setDataUrl(publish_dataUrlPre + courseId);
@@ -363,20 +441,19 @@ public class CourseService {
         return cmsPostPageResult;
     }
 
-
     //将coursePub对象保存到数据库
-    private CoursePub saveCoursePub(String id, CoursePub coursePub) {
+    private CoursePub saveCoursePub(String id,CoursePub coursePub){
 
         CoursePub coursePubNew = null;
         //根据课程id查询coursePub
         Optional<CoursePub> coursePubOptional = coursePubRepository.findById(id);
-        if (coursePubOptional.isPresent()) {
+        if(coursePubOptional.isPresent()){
             coursePubNew = coursePubOptional.get();
-        } else {
+        }else{
             coursePubNew = new CoursePub();
         }
         //将coursePub对象中的信息保存到coursePubNew中
-        BeanUtils.copyProperties(coursePub, coursePubNew);
+        BeanUtils.copyProperties(coursePub,coursePubNew);
         coursePubNew.setId(id);
         //时间戳,给logstach使用
         coursePubNew.setTimestamp(new Date());
@@ -388,44 +465,42 @@ public class CourseService {
         return coursePubNew;
     }
 
-
     //创建coursePub对象
-    private CoursePub createCoursePub(String id) {
+    private CoursePub createCoursePub(String id){
         CoursePub coursePub = new CoursePub();
         //根据课程id查询course_base
         Optional<CourseBase> baseOptional = courseBaseRepository.findById(id);
-        if (baseOptional.isPresent()) {
+        if(baseOptional.isPresent()){
             CourseBase courseBase = baseOptional.get();
             //将courseBase属性拷贝到CoursePub中
-            BeanUtils.copyProperties(courseBase, coursePub);
+            BeanUtils.copyProperties(courseBase,coursePub);
         }
 
-//        //查询课程图片
-//        Optional<CoursePic> picOptional = coursePicRepository.findById(id);
-//        if(picOptional.isPresent()){
-//            CoursePic coursePic = picOptional.get();
-//            BeanUtils.copyProperties(coursePic, coursePub);
-//        }
+        //查询课程图片
+        Optional<CoursePic> picOptional = coursePicRepository.findById(id);
+        if(picOptional.isPresent()){
+            CoursePic coursePic = picOptional.get();
+            BeanUtils.copyProperties(coursePic, coursePub);
+        }
 
-        //Course marketing info...
+        //课程营销信息
         Optional<CourseMarket> marketOptional = courseMarketRepository.findById(id);
-        if (marketOptional.isPresent()) {
+        if(marketOptional.isPresent()){
             CourseMarket courseMarket = marketOptional.get();
             BeanUtils.copyProperties(courseMarket, coursePub);
         }
 
-        //Course plan info....
+        //课程计划信息
         TeachplanNode teachplanNode = teachplanMapper.selectList(id);
         String jsonString = JSON.toJSONString(teachplanNode);
-
-        //save course plan's info in to JSON and coursePub objs....
+        //将课程计划信息json串保存到 course_pub中
         coursePub.setTeachplan(jsonString);
         return coursePub;
     }
 
     //保存课程计划与媒资文件的关联信息
     public ResponseResult saveMedia(TeachplanMedia teachplanMedia) {
-        if (teachplanMedia == null || StringUtils.isEmpty(teachplanMedia.getTeachplanId())) {
+        if(teachplanMedia == null || StringUtils.isEmpty(teachplanMedia.getTeachplanId())){
             ExceptionCast.cast(CommonCode.INVALID_PARAM);
         }
         //校验课程计划是否是3级
@@ -433,23 +508,23 @@ public class CourseService {
         String teachplanId = teachplanMedia.getTeachplanId();
         //查询到课程计划
         Optional<Teachplan> optional = teachplanRepository.findById(teachplanId);
-        if (!optional.isPresent()) {
+        if(!optional.isPresent()){
             ExceptionCast.cast(CommonCode.INVALID_PARAM);
         }
         //查询到教学计划
         Teachplan teachplan = optional.get();
         //取出等级
         String grade = teachplan.getGrade();
-        if (StringUtils.isEmpty(grade) || !grade.equals("3")) {
+        if(StringUtils.isEmpty(grade) || !grade.equals("3")){
             //只允许选择第三级的课程计划关联视频
             ExceptionCast.cast(CourseCode.COURSE_MEDIA_TEACHPLAN_GRADEERROR);
         }
         //查询teachplanMedia
         Optional<TeachplanMedia> mediaOptional = teachplanMediaRepository.findById(teachplanId);
         TeachplanMedia newTeachplanMedia = null;
-        if (mediaOptional.isPresent()) {
+        if(mediaOptional.isPresent()){
             newTeachplanMedia = mediaOptional.get();
-        } else {
+        }else{
             newTeachplanMedia = new TeachplanMedia();
         }
 
@@ -462,22 +537,5 @@ public class CourseService {
         teachplanMediaRepository.save(newTeachplanMedia);
 
         return new ResponseResult(CommonCode.SUCCESS);
-    }
-
-    @Autowired
-    TeachplanMediaPubRepository teachplanMediaPubRepository;
-
-    //保存课程计划媒资信息
-    private void saveTeachplanMediaPub(String courseId) {
-        //查询课程媒资信息
-        List<TeachplanMedia> teachplanMediaList = teachplanMediaRepository.findByCourseId(courseId); //将课程计划媒资信息存储待索引表
-        teachplanMediaPubRepository.deleteByCourseId(courseId);
-        List<TeachplanMediaPub> teachplanMediaPubList = new ArrayList<>();
-        for (TeachplanMedia teachplanMedia : teachplanMediaList) {
-            TeachplanMediaPub teachplanMediaPub = new TeachplanMediaPub();
-            BeanUtils.copyProperties(teachplanMedia, teachplanMediaPub);
-            teachplanMediaPubList.add(teachplanMediaPub);
-        }
-        teachplanMediaPubRepository.saveAll(teachplanMediaPubList);
     }
 }

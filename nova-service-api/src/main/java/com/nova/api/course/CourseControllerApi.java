@@ -1,9 +1,6 @@
 package com.nova.api.course;
 
-import com.nova.framework.domain.course.CourseBase;
-import com.nova.framework.domain.course.CourseMarket;
-import com.nova.framework.domain.course.Teachplan;
-import com.nova.framework.domain.course.TeachplanMedia;
+import com.nova.framework.domain.course.*;
 import com.nova.framework.domain.course.ext.CourseInfo;
 import com.nova.framework.domain.course.ext.CourseView;
 import com.nova.framework.domain.course.ext.TeachplanNode;
@@ -21,47 +18,56 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @description:
  */
 
-@Api(value = "Course management Api, provides CRUD of course info.")
+
+@Api(value = "课程管理接口", description = "课程管理接口，提供课程的增、删、改、查")
 public interface CourseControllerApi {
-    @ApiOperation("Query course plan")
+    @ApiOperation("课程计划查询")
     public TeachplanNode findTeachplanList(String courseId);
 
-    @ApiOperation("Add course plan")
-    public ResponseResult addTeachplanList(Teachplan teachplan);
+    @ApiOperation("添加课程计划")
+    public ResponseResult addTeachplan(Teachplan teachplan);
 
-    @ApiOperation("Query course's list")
+    //查询课程列表
+    @ApiOperation("查询我的课程列表")
     public QueryResponseResult<CourseInfo> findCourseList(
             int page,
             int size,
             CourseListRequest courseListRequest
     );
 
-    @ApiOperation("Add course basic info")
+    @ApiOperation("添加课程基础信息")
     public AddCourseResult addCourseBase(CourseBase courseBase);
 
-    @ApiOperation("Get course basic info")
+    @ApiOperation("获取课程基础信息")
     public CourseBase getCourseBaseById(String courseId) throws RuntimeException;
 
+    @ApiOperation("更新课程基础信息")
+    public ResponseResult updateCourseBase(String id,CourseBase courseBase);
 
-    @ApiOperation("Update course basic info")
-    public ResponseResult updateCourseBase(String id, CourseBase courseBase);
-
-
-    @ApiOperation("Get course's marketing info")
+    @ApiOperation("获取课程营销信息")
     public CourseMarket getCourseMarketById(String courseId);
 
-    @ApiOperation("Update course's marketing info")
+    @ApiOperation("更新课程营销信息")
     public ResponseResult updateCourseMarket(String id,CourseMarket courseMarket);
 
-    @ApiOperation("Query CourseView")
+    @ApiOperation("添加课程图片")
+    public ResponseResult addCoursePic(String courseId,String pic);
+
+    @ApiOperation("查询课程图片")
+    public CoursePic findCoursePic(String courseId);
+
+    @ApiOperation("删除课程图片")
+    public ResponseResult deleteCoursePic(String courseId);
+
+    @ApiOperation("课程视图查询")
     public CourseView courseView(String id);
 
-    @ApiOperation("Preview course")
+    @ApiOperation("预览课程")
     public CoursePublishResult preview(String id);
 
-    @ApiOperation("Post course")
+    @ApiOperation("发布课程")
     public CoursePublishResult publish(@PathVariable String id);
 
-    @ApiOperation("Save media-recourse info")
-    public ResponseResult savemedia(TeachplanMedia teachplanMedia);
+    @ApiOperation("保存媒资信息")
+    public ResponseResult saveMedia(TeachplanMedia teachplanMedia);
 }

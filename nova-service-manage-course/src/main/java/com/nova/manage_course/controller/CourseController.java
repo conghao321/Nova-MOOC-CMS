@@ -7,10 +7,7 @@ package com.nova.manage_course.controller;
 import com.nova.api.course.CourseControllerApi;
 import com.nova.framework.domain.cms.CmsPage;
 import com.nova.framework.domain.cms.response.CmsPostPageResult;
-import com.nova.framework.domain.course.CourseBase;
-import com.nova.framework.domain.course.CourseMarket;
-import com.nova.framework.domain.course.Teachplan;
-import com.nova.framework.domain.course.TeachplanMedia;
+import com.nova.framework.domain.course.*;
 import com.nova.framework.domain.course.ext.CourseInfo;
 import com.nova.framework.domain.course.ext.CourseView;
 import com.nova.framework.domain.course.ext.TeachplanNode;
@@ -20,9 +17,14 @@ import com.nova.framework.domain.course.response.CoursePublishResult;
 import com.nova.framework.model.response.CommonCode;
 import com.nova.framework.model.response.QueryResponseResult;
 import com.nova.framework.model.response.ResponseResult;
+import com.nova.framework.utils.NovaOauth2Util;
+import com.nova.framework.web.BaseController;
 import com.nova.manage_course.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/course")
@@ -31,48 +33,57 @@ public class CourseController implements CourseControllerApi {
     @Autowired
     CourseService courseService;
 
+
+    @PreAuthorize("hasAuthority('course_teachplan_list')")
     @Override
     @GetMapping("/teachplan/list/{courseId}")
     public TeachplanNode findTeachplanList(@PathVariable("courseId") String courseId) {
         return courseService.findTeachplanList(courseId);
+
     }
+
 
     @Override
     @PostMapping("/teachplan/add")
-    public ResponseResult addTeachplanList(@RequestBody Teachplan teachplan) {
+    public ResponseResult addTeachplan(@RequestBody  Teachplan teachplan) {
         return courseService.addTeachplan(teachplan);
     }
 
-
     @Override
-    @GetMapping("/coursebase/list/{page}/{size}")
+    @GetMapping("/courseBase/list/{page}/{size}")
     public QueryResponseResult<CourseInfo> findCourseList(
             @PathVariable("page") int page,
             @PathVariable("size") int size,
             CourseListRequest courseListRequest) {
-        return courseService.findCourseList(page, size, courseListRequest);
+
+
+        NovaOauth2Util novaOauth2Util = new NovaOauth2Util();
+        NovaOauth2Util.UserJwt userJwt = novaOauth2Util.getUserJwtFromHeader((HttpServletRequest) courseListRequest);
+        String companyId = userJwt.getCompanyId();
+        return courseService.findCourseList(companyId,page,size,courseListRequest);
     }
 
     @Override
-    @PostMapping("/coursebase/add")
+    @PostMapping("/courseBase/add")
     public AddCourseResult addCourseBase(@RequestBody CourseBase courseBase) {
         return courseService.addCourseBase(courseBase);
     }
 
     @Override
-    @GetMapping("/coursebase/get/{courseId}")
-    public CourseBase getCourseBaseById(@PathVariable("courseId") String courseId) throws RuntimeException {
-        return courseService.getCoursebaseById(courseId);
+    @GetMapping("/courseBase/get/{courseId}")
+    public CourseBase getCourseBaseById(@PathVariable("courseId") String courseId) throws
+            RuntimeException {
+        return courseService.getCourseBaseById(courseId);
+    }
+    @Override
+    @PutMapping("/courseBase/update/{id}")
+    public ResponseResult updateCourseBase(@PathVariable("id") String id, @RequestBody CourseBase
+            courseBase) {
+        return courseService.updateCourseBase(id,courseBase);
     }
 
     @Override
-    @PutMapping("/coursebase/update/{id}")
-    public ResponseResult updateCourseBase(@PathVariable("id") String id, @RequestBody CourseBase
-            courseBase) {
-        return courseService.updateCoursebase(id, courseBase);
-    }
-
-    @GetMapping("/coursemarket/get/{courseId}")
+    @GetMapping("/courseMarket/get/{courseId}")
     public CourseMarket getCourseMarketById(@PathVariable("courseId") String courseId) {
         return courseService.getCourseMarketById(courseId);
     }
@@ -82,24 +93,43 @@ public class CourseController implements CourseControllerApi {
     public ResponseResult updateCourseMarket(@PathVariable("id") String id, @RequestBody CourseMarket
             courseMarket) {
         CourseMarket courseMarket_u = courseService.updateCourseMarket(id, courseMarket);
-        if (courseMarket_u != null) {
+        if(courseMarket_u!=null){
             return new ResponseResult(CommonCode.SUCCESS);
-        } else {
+        }else{
             return new ResponseResult(CommonCode.FAIL);
         }
     }
 
     @Override
-    @GetMapping("/courseview/{id}")
-    public CourseView courseView(@PathVariable("id") String id) {
+    @PostMapping("/coursePic/add")
+    public ResponseResult addCoursePic(@RequestParam("courseId") String courseId,
+                                       @RequestParam("pic") String pic) {
+        //保存课程图片
+        return courseService.saveCoursePic(courseId,pic);
+    }
 
-        return courseService.getCoruseView(id);
+    @PreAuthorize("hasAuthority('course_find_pic')")
+    @Override
+    @GetMapping("/coursePic/list/{courseId}")
+    public CoursePic findCoursePic(@PathVariable("courseId") String courseId) {
+        return courseService.findCoursePic(courseId);
+    }
+
+    @Override
+    @DeleteMapping("/coursePic/delete")
+    public ResponseResult deleteCoursePic(@RequestParam("courseId") String courseId) {
+        return courseService.deleteCoursePic(courseId);
+    }
+
+    @Override
+    @GetMapping("/courseView/{id}")
+    public CourseView courseView(@PathVariable("id") String id) {
+        return courseService.getCourseView(id);
     }
 
     @Override
     @PostMapping("/preview/{id}")
     public CoursePublishResult preview(@PathVariable("id") String id) {
-
         return courseService.preview(id);
     }
 
@@ -110,10 +140,8 @@ public class CourseController implements CourseControllerApi {
     }
 
     @Override
-    @PostMapping("/savemedia")
-    public ResponseResult savemedia(@RequestBody TeachplanMedia teachplanMedia) {
-        return courseService.saveMedia(teachplanMedia); }
-
+    @PostMapping("/saveMedia")
+    public ResponseResult saveMedia(@RequestBody TeachplanMedia teachplanMedia) {
+        return courseService.saveMedia(teachplanMedia);
+    }
 }
-
-

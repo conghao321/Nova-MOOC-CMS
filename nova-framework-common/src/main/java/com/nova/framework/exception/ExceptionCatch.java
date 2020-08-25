@@ -24,7 +24,7 @@ public class ExceptionCatch {
 
     //We put different kinds of exception into the map.
     private static ImmutableMap<Class<? extends Throwable>,ResultCode> EXCEPTIONS;
-    private static ImmutableMap.Builder<Class<? extends Throwable>,ResultCode> builder=ImmutableMap.builder();
+    protected static ImmutableMap.Builder<Class<? extends Throwable>,ResultCode> builder=ImmutableMap.builder();
 
     static {
         //map different exception to different codes.
