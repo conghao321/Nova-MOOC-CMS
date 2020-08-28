@@ -6,16 +6,18 @@
 
 This is a comprehensive project of a CMS(content-management-system) of MOOC website.
 
+<br/> 
+
 ## Table of Contents
 
 - [Background](#Background)
 - [TechStack](#Tech-stack)
 - [Usage](#Usage)
-- [Services](#Service)
+- [Services](#Services)
 - [Contributing](#Contributing)
 - [License](#License)
 
-
+<br/> <br/> 
 
 ## Background
 
@@ -45,7 +47,7 @@ Basically, it is a system to manage content... Yeah, just like the name. But the
 
 The answer is simple: ALL you need to display in a MOOC website.
 
-
+<br/> <br/> 
 
 
 
@@ -87,7 +89,7 @@ Honestly, I don't like vue.js, so in future, I will rebuild it again by React.
 
 **I am a big fan of React.**
 
-
+<br/> <br/> 
 
 ## Usage
 
@@ -101,7 +103,7 @@ This project's modules are all dependency-managed by MAVEN.
 
 So, check each modules(service) maven file. (pom.xml);
 
-
+<br/><br/>  
 
 ## Services
 
@@ -135,7 +137,7 @@ Api: It is to store all defined APIs.
 10.  File-System: The project's storage is based on distributed storage.
 11.  Learning: to manage the learners's options: for example, retrieve media-resource.
 
-
+<br/> <br/> 
 
 ## Contributing
 
@@ -143,7 +145,7 @@ Hao Cong
 
 Datasource: Xuecheng Online Mooc 
 
-
+<br/> <br/> 
 
 ## License
 
