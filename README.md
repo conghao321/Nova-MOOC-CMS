@@ -8,8 +8,9 @@ This is a comprehensive project of a CMS(content-management-system) of MOOC webs
 
 ## Table of Contents
 
-- [Background](#background)
-- [TechStack](#techstack)
+- [Background](#Background)
+- [TechStack](#Tech-stack)
+- [Usage](#Usage)
 - [Services](#service)
 - [Contributing](#contributing)
 - [License](#license)
@@ -90,7 +91,7 @@ Honestly, I don't like vue.js, so in future, I will rebuild it again by React.
 
 
 
-## Usage
+## <a href='#Usage'> Usage
 
 #### Download it and import it by IntelliJ IDEA.
 
