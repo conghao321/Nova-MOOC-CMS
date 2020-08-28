@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by admin on 2018/3/18.
+ * Created by admin on 2020/3/18.
  */
 public class CookieUtil {
 
@@ -34,7 +34,7 @@ public class CookieUtil {
     /**
      * 根据cookie名称读取cookie
      * @param request
-     * @param cookieName1,cookieName2
+     * @param cookieNames
      * @return map<cookieName,cookieValue>
      */
 

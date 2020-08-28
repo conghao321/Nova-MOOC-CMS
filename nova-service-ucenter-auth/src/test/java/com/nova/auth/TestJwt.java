@@ -27,14 +27,14 @@ public class TestJwt {
         //密钥库文件
         String keystore = "nova.keystore";
         //密钥库的密码
-        String keystore_password = "xuechengkeystore";
+        String keystore_password = "novakeystore";
 
         //密钥库文件路径
         ClassPathResource classPathResource = new ClassPathResource(keystore);
         //密钥别名
         String alias  = "xckey";
         //密钥的访问密码
-        String key_password = "xuecheng";
+        String key_password = "nova";
         //密钥工厂
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(classPathResource,keystore_password.toCharArray());
         //密钥对（公钥和私钥）

@@ -4,7 +4,7 @@ server:
     context-path: /auth
 spring:
   application:
-    name: xc-service-ucenter-auth
+    name: nova-service-ucenter-auth
   redis:
     host: ${REDIS_HOST:127.0.0.1}
     port: ${REDIS_PORT:6379}
@@ -17,7 +17,7 @@ spring:
         maxWait: -1 #连接池最大等行时间 -1没有限制
   datasource:
     druid:
-      url: ${MYSQL_URL:jdbc:mysql://localhost:3306/xc_user?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false}
+      url: ${MYSQL_URL:jdbc:mysql://localhost:3306/nova_user?serverTimezone=UTC&characterEncoding=utf-8&useSSL=false}
       username: root
       password: root
       driverClassName: com.mysql.cj.jdbc.Driver
@@ -31,16 +31,16 @@ spring:
       minEvictableIdleTimeMillis: 300000  #连接在连接池的最小生存时间（毫秒）
 auth:
   tokenValiditySeconds: 1200  #token存储到redis的过期时间
-  clientId: XcWebApp
-  clientSecret: XcWebApp
-  cookieDomain: xc.com
+  clientId: NovaWebApp
+  clientSecret: NovaWebApp
+  cookieDomain: nova.com
   cookieMaxAge: -1
 encrypt:
   key-store:
-    location: classpath:/xc.keystore
-    secret: xuechengkeystore
-    alias: xckey
-    password: xuecheng
+    location: classpath:/nova.keystore
+    secret: novakeystore
+    alias: novakey
+    password: nova
 eureka:
   client:
     registerWithEureka: true #服务注册开关

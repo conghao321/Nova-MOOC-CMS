@@ -13,7 +13,7 @@ import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author Administrator
+ * @author Hao Cong
  * @version 1.0
  **/
 @EnableFeignClients

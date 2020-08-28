@@ -12,9 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author Administrator
+ * @author Hao Cong
  * @version 1.0
- * @create 2018-09-12 17:24
+ * @create 2020-09-12 17:24
  **/
 @RestController
 @RequestMapping("/cms/page")

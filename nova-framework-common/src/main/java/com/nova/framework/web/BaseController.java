@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by mrt on 2018/5/22.
+ * Created by mrt on 2020/5/22.
  */
 public class BaseController {
     protected HttpServletRequest request;

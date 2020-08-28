@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by admin on 2018/3/6.
+ * Created by admin on 2020/3/6.
  */
 public class Mp4VideoUtil extends VideoUtil {
 
@@ -76,7 +76,7 @@ public class Mp4VideoUtil extends VideoUtil {
     }
 
     public static void main(String[] args) throws IOException {
-        String ffmpeg_path = "D:\\Program Files\\ffmpeg-20180227-fa0c9d6-win64-static\\bin\\ffmpeg.exe";//ffmpeg的安装位置
+        String ffmpeg_path = "D:\\Program Files\\ffmpeg-20200227-fa0c9d6-win64-static\\bin\\ffmpeg.exe";//ffmpeg的安装位置
         String video_path = "E:\\ffmpeg_test\\1.avi";
         String mp4_name = "809694a6a974c35e3a36f36850837d7c.mp4";
         String mp4_path = "F:/develop/upload/8/0/809694a6a974c35e3a36f36850837d7c/";

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author Administrator
+ * @author Hao Cong
  * @version 1.0
- * @create 2018-09-15 14:22
+ * @create 2020-09-15 14:22
  **/
 @RestController
 @RequestMapping("/cms/config")

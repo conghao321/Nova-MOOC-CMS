@@ -4,7 +4,7 @@ import com.nova.framework.domain.course.CourseBase;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Created by Administrator.
+ * Created by Hao Cong.
  */
 public interface CourseBaseRepository extends JpaRepository<CourseBase,String> {
 }

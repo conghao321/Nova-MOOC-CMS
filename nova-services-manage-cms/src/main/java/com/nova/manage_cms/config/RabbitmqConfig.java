@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author Administrator
+ * @author Hao Cong
  * @version 1.0
  * @descrition: In this class, production side, we only build a routing_exchage
  **/

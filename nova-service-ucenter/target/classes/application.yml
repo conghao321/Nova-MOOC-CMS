@@ -2,13 +2,13 @@ server:
   port: 40300
 spring:
   application:
-    name: xc-service-ucenter
+    name: nova-service-ucenter
   datasource:
     druid:
-      url: ${MYSQL_URL:jdbc:mysql://localhost:3306/xc_user?characterEncoding=utf-8}
+      url: ${MYSQL_URL:jdbc:mysql://localhost:3306/nova_user?characterEncoding=utf-8}
       username: root
       password: mysql
-      driverClassName: com.mysql.jdbc.Driver
+      driverClassName: com.mysql.cj.jdbc.Driver
       initialSize: 5  #初始建立连接数量
       minIdle: 5  #最小连接数量
       maxActive: 20 #最大连接数量
@@ -22,10 +22,10 @@ eureka:
     registerWithEureka: true #服务注册开关
     fetchRegistry: true #服务发现开关
     serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址，多个中间用逗号分隔
-      defaultZone: http://localhost:50101/eureka/,http://localhost:50102/eureka/
+      defaultZone: ${EUREKA_SERVER:http://localhost:50101/eureka/}
   instance:
     prefer-ip-address:  true  #将自己的ip地址注册到Eureka服务中
-    ip-address: 127.0.0.1
+    ip-address: ${IP_ADDRESS:127.0.0.1}
     instance-id: ${spring.application.name}:${server.port} #指定实例id
 ribbon:
   MaxAutoRetries: 2 #最大重试次数，当Eureka中可以找到服务，但是服务连不上时将会重试，如果eureka中找不到服务则直接走断路器

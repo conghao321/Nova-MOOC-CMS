@@ -8,12 +8,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by admin on 2018/3/19.
+ * Created by admin on 2020/3/19.
  */
 @Data
 @ToString
 @Entity
-@Table(name="xc_menu")
+@Table(name="nv_menu")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class NovaMenu {
 

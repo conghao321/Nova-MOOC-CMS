@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 
 /**
- * @author Administrator
+ * @author Hao Cong
  * @version 1.0
  **/
 @SpringBootTest

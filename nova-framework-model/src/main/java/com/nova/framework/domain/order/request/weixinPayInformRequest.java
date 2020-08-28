@@ -4,7 +4,7 @@ import com.nova.framework.model.request.RequestData;
 import lombok.Data;
 
 /**
- * Created by mrt on 2018/3/27.
+ * Created by mrt on 2020/3/27.
  */
 @Data
 public class weixinPayInformRequest extends RequestData {

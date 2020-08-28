@@ -8,12 +8,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by admin on 2018/2/10.
+ * Created by admin on 2020/2/10.
  */
 @Data
 @ToString
 @Entity
-@Table(name="xc_company_user")
+@Table(name="nv_company_user")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class NovaCompanyUser implements Serializable {
     private static final long serialVersionUID = -916357110051689786L;

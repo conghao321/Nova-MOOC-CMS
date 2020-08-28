@@ -12,3 +12,8 @@ nova:
       source_field:
         id,name,grade,mt,st,charge,valid,pic,qq,price,price_old,status,studymodel,teachmode,expires,pub_
         time,start_time,end_time
+
+      media:
+        index: nova_course_media
+        type: doc
+        source_field: courseid,media_id,media_url,teachplan_id,media_fileoriginalname

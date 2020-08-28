@@ -23,7 +23,7 @@
             <p class="tit">${courseBase.name}</p>
             <p class="pic"><span class="new-pic">特惠价格￥${(courseMarket.price)!""}</span> <span class="old-pic">原价￥${(courseMarket.price_old)!""}</span></p>
             <p class="info">
-                <a href="http://ucenter.xuecheng.com/#/learning/${courseBase.id}/0"  target="_blank" v-if="learnstatus == 1" v-cloak>马上学习</a>
+                <a href="http://ucenter.nova.com/#/learning/${courseBase.id}/0"  target="_blank" v-if="learnstatus == 1" v-cloak>马上学习</a>
                 <a href="#"  @click="addopencourse" v-if="learnstatus == 2" v-cloak>立即报名</a>
                 <a href="#"  @click="buy" v-if="learnstatus == 3" v-cloak>立即购买</a>
                 <span><em>难度等级</em>
@@ -50,7 +50,7 @@
         <div class="banner-rit">
 	    
 	    <#if (coursePic.pic)??>
-	     <p><img src="http://img.xuecheng.com/${coursePic.pic}" alt="" width="270" height="156"> </p>
+	     <p><img src="http://img.nova.com/${coursePic.pic}" alt="" width="270" height="156"> </p>
 	     <#else>
 		 <p><img src="/static/img/widget-video.png" alt="" width="270" height="156"> </p>
 	    </#if>
@@ -637,7 +637,7 @@
         <div class="content">
             <img src="./text.png" alt="">
             <div class="info">
-                <p class="info-tit">Bootstrap开发框架 <span>课程有效期:2017年9月12日-2018年9月11日</span></p>
+                <p class="info-tit">Bootstrap开发框架 <span>课程有效期:2017年9月12日-2020年9月11日</span></p>
                 <p class="info-pic">课程价格 : <span>￥98</span></p>
                 <p class="info-new-pic">优惠价格 : <span>￥98</span></p>
             </div>

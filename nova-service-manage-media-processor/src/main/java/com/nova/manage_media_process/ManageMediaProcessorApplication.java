@@ -7,12 +7,12 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 /**
- * @author Administrator
+ * @author Hao Cong
  * @version 1.0
- * @create 2018-07-12 8:57
+ * @create 2020-07-12 8:57
  **/
 @SpringBootApplication
-@EntityScan("com.xuecheng.framework.domain.media")//扫描实体类
+@EntityScan("com.nova.framework.domain.media")//扫描实体类
 @ComponentScan(basePackages={"com.nova.api"})//扫描接口
 @ComponentScan(basePackages={"com.nova.manage_media_process"})//扫描本项目下的所有类
 @ComponentScan(basePackages={"com.nova.framework"})//扫描common下的所有类

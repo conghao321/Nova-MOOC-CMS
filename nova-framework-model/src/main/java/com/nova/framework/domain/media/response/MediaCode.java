@@ -7,7 +7,7 @@ import lombok.ToString;
 
 
 /**
- * Created by admin on 2018/3/5.
+ * Created by admin on 2020/3/5.
  */
 @ToString
 public enum MediaCode implements ResultCode {

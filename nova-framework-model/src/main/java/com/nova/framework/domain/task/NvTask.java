@@ -9,12 +9,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by mrt on 2018/4/4.
+ * Created by mrt on 2020/4/4.
  */
 @Data
 @ToString
 @Entity
-@Table(name = "xc_task")
+@Table(name = "nova_task")
 //@GenericGenerator(name = "jpa-assigned", strategy = "assigned")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class NvTask implements Serializable {

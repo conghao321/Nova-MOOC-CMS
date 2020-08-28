@@ -42,7 +42,7 @@ ribbon:
 course‐publish:
   siteId: 5e5b6b8aa6a4ac40046c05ee    #5b30cba5f58b4411fc6cb1e5
   templateId: 5f30d40409a5fe5582e14ba8
-  previewUrl: http://www.xuecheng.com/cms/preview/
+  previewUrl: http://www.nova.com/cms/preview/
   pageWebPath: /course/detail/
   pagePhysicalPath: /Users/conghao/codes/javaCode/novaOnlineMooc/resource/static/course/detail
   dataUrlPre: http://localhost:31200/course/courseview/

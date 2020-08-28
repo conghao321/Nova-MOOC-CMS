@@ -11,9 +11,9 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 
 /**
- * @author Administrator
+ * @author Hao Cong
  * @version 1.0
- * @create 2018-09-12 18:11
+ * @create 2020-09-12 18:11
  **/
 @SpringBootTest
 @RunWith(SpringRunner.class)

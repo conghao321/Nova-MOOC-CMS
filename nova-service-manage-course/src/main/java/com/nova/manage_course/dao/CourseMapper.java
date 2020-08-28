@@ -7,7 +7,7 @@ import com.nova.framework.domain.course.request.CourseListRequest;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * Created by Administrator.
+ * Created by Hao Cong.
  */
 @Mapper
 public interface CourseMapper {

@@ -5,7 +5,7 @@ import com.nova.framework.model.response.ResultCode;
 import lombok.Data;
 
 /**
- * Created by mrt on 2018/3/31.
+ * Created by mrt on 2020/3/31.
  */
 @Data
 public class GenerateHtmlResult extends ResponseResult {

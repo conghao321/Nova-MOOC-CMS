@@ -4,7 +4,7 @@ import com.nova.framework.model.response.ResultCode;
 import lombok.ToString;
 
 /**
- * Created by mrt on 2018/3/5.
+ * Created by mrt on 2020/3/5.
  */
 @ToString
 public enum CmsCode implements ResultCode {

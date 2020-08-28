@@ -6,11 +6,9 @@ package com.nova.manage_media.controller;
 
 
 import com.nova.api.media.MediaFileControllerApi;
-import com.nova.framework.domain.course.TeachplanMedia;
 import com.nova.framework.domain.media.MediaFile;
 import com.nova.framework.domain.media.request.QueryMediaFileRequest;
 import com.nova.framework.model.response.QueryResponseResult;
-import com.nova.framework.model.response.ResponseResult;
 import com.nova.manage_media.service.MediaFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
