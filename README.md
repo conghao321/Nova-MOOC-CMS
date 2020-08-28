@@ -8,6 +8,16 @@ This is a comprehensive project of a CMS(content-management-system) of MOOC webs
 
 To be handy, the courses' datasource, I retrieve it from xuechengzaixian.
 
+
+
+Overall, Nova is a B2B2C business model. 
+
+First B is representative of the application-provider: us/you.
+
+Second B is representative of the courses' tutors.
+
+Finally, C is the clients, which means learners.
+
 <br/> 
 
 ## Table of Contents
