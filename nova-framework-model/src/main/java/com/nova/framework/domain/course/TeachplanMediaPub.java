@@ -1,7 +1,8 @@
 package com.nova.framework.domain.course;
-/*
- * @Author:conghao
- * @description:
+/**
+ * @Author: HaoCong
+ * @Description:
+ * @Modified By:
  */
 
 import lombok.Data;

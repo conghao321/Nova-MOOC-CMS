@@ -1,9 +1,9 @@
 package com.nova.framework.domain.course.response;
-/*
- * @Author:conghao
- * @description:
+/**
+ * @Author: HaoCong
+ * @Description:
+ * @Modified By:
  */
-
 import com.nova.framework.model.response.ResponseResult;
 import com.nova.framework.model.response.ResultCode;
 import lombok.Data;

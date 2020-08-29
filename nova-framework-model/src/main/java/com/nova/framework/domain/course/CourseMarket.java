@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by admin on 2020/2/10.
+ * @Author: HaoCong
+ * @Description:
+ * @Modified By:
  */
 @Data
 @ToString

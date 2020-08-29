@@ -8,7 +8,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by admin on 2020/2/7.
+ * @Author: HaoCong
+ * @Description:
+ * @Modified By:
  */
 @Data
 @ToString

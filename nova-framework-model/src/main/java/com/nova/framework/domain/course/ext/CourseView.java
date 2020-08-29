@@ -1,8 +1,8 @@
 package com.nova.framework.domain.course.ext;
-/*
- * @Author:conghao
- * @description:
- * Course detail's combination.
+/**
+ * @Author: HaoCong
+ * @Description:
+ * @Modified By:
  */
 
 import com.nova.framework.domain.course.CourseBase;

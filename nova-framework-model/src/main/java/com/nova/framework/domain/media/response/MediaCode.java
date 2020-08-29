@@ -5,9 +5,10 @@ import com.nova.framework.model.response.ResultCode;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.ToString;
 
-
 /**
- * Created by admin on 2020/3/5.
+ * @Author: HaoCong
+ * @Description:
+ * @Modified By:
  */
 @ToString
 public enum MediaCode implements ResultCode {

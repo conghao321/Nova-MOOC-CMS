@@ -9,12 +9,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by admin on 2020/2/10.
+ * @Author: HaoCong
+ * @Description:
+ * @Modified By:
  */
 @Data
 @ToString
 @Entity
-@Table(name="xc_learning_list")
+@Table(name="nova_learning_list")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class NvLearningList implements Serializable {
     private static final long serialVersionUID = -916357210051689799L;

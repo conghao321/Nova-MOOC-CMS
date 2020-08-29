@@ -6,9 +6,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Map;
-
 /**
- * Created by mrt on 2020/2/5.
+ * @Author: HaoCong
+ * @Description:
+ * @Modified By:
  */
 @Data
 @ToString

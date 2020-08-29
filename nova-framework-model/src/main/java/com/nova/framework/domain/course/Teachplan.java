@@ -8,7 +8,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * data model
+ * @Author: HaoCong
+ * @Description:
+ * @Modified By:
  */
 @Data
 @ToString
