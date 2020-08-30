@@ -1,4 +1,4 @@
-# Nova
+# Nova (V 0.0.1)
 
 ![dIQ0IJ.png](dIQ0IJ.png)
 
@@ -45,7 +45,7 @@ Besides, nova is also the group's name, which I am currently attending during my
 
 ### Why Mooc ?
 
-This is long story, in short, I used many Mooc website, for example, Coursera, Udemy, Udacity and Xuechengonline in China. I learned a lot from them, so for long time, I desired to build a comprehensive MOOC website myself. Here it comes.
+This is long story, but in short, I have experienced many Mooc website, for example, Coursera, Udemy, Udacity and Xuechengonline in China. I learned a lot from them, so for long time, I desired to build a comprehensive MOOC website myself. Here it comes.
 
 
 
@@ -67,25 +67,29 @@ The answer is simple: ALL you need to display in a MOOC website.
 
 ### Architecture
 
-The project has been selected based on Microservice Architecture.
+The project is based on Microservice Architecture.
+Maybe in future, it will be re-implemented by Golang...
 
-
+Ofcourse, the golang version is just an illusion right now, haha...
 
 ### Skeleton Framework:
 
 The project based on **Spring-Boot** and **Spring Cloud**. 
 
-Combining of them can ideally build a microservice project.
+Combining them can ideally build a microservice project.
 
+Also, it needs Maven.
 
 
 ### Programming Langugage:
 
 
-
-The back-end services is based on SpringBoot, so the primary language is JAVA.
+The back-end services are based on SpringBoot, so the primary language is JAVA.
 
 However, to render some static html, we also use Freemarker.
+
+Nowadays, the freemarker seems be abandoned for a long time...so...
+Maybe I will find a better way to replace it in future.
 
 
 
