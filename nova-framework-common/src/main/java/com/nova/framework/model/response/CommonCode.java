@@ -3,10 +3,9 @@ package com.nova.framework.model.response;
 import lombok.ToString;
 
 /**
- * @Author: mrt.
- * @Description:
+ * @Author: Hao Cong
+ * @Description: Common Runtime codes
  * @Date:Created in 2020/1/24 18:33.
- * @Modified By:
  */
 
 @ToString
@@ -22,8 +21,6 @@ public enum CommonCode implements ResultCode{
     CMS_ADDPAGE_EXISTS(false,24001,"The page already exist!"),
     INVALID_PARAM(false,10003,"The input params are invalid");
 
-    //private static ImmutableMap<Integer, CommonCode> codes ;
-    //flag for success or not
     boolean success;
 
     //operation's code

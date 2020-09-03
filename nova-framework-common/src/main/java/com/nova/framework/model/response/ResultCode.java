@@ -1,12 +1,12 @@
 package com.nova.framework.model.response;
 
 /**
- * Created by mrt on 2020/3/5.
- * 10000-- 通用错误代码
- * 22000-- 媒资错误代码
- * 23000-- 用户中心错误代码
- * 24000-- cms错误代码
- * 25000-- 文件系统
+ *  to retrieve error code...
+ * 10000-- common error code
+ * 22000-- media error code
+ * 23000-- user center error code
+ * 24000-- CMS error code
+ * 25000-- file system error code
  */
 public interface ResultCode {
     //操作是否成功,true为成功，false操作失败

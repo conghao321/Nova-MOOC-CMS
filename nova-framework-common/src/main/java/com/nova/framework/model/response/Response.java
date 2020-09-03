@@ -1,7 +1,8 @@
 package com.nova.framework.model.response;
 
 /**
- * Created by admin on 2020/3/5.
+ * Response basic interface.
+ * Success and its code
  */
 public interface Response {
     public static final boolean SUCCESS = true;

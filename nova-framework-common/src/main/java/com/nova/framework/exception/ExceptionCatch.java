@@ -52,10 +52,11 @@ public class ExceptionCatch {
         }
 
         ResultCode resultCode=EXCEPTIONS.get(e);
-        if(resultCode!=null)
+        if(resultCode!=null) {
             return new ResponseResult(resultCode);
-        else
+        } else {
             return new ResponseResult(CommonCode.SERVER_ERROR);
+        }
     }
 
 }

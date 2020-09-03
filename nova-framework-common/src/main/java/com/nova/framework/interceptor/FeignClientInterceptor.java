@@ -2,6 +2,7 @@ package com.nova.framework.interceptor;
 /*
  * @Author:conghao
  * @description:
+ * This class build a feign request to intercept JWT token and pass it to request's header.
  */
 
 

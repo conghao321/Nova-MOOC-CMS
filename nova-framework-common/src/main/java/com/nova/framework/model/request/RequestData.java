@@ -4,7 +4,10 @@ import lombok.Data;
 import lombok.ToString;
 
 /**
- * Created by mrt on 2020/3/5.
+ * Created by haocong
+ *
+ * used to mark request data format...
+ * The key is the annotation @Data and @ToString
  */
 @Data
 @ToString

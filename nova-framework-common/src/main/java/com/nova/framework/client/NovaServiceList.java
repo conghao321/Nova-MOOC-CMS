@@ -1,9 +1,12 @@
 package com.nova.framework.client;
 
-
+/*
+*
+* The list of services' names
+*
+* */
 public class NovaServiceList {
-    public static final String nova_GOVERN_CENTER = "nova-govern-center";
-    public static final String NOVA_SERVICE_PORTALVIEW = "nova-service-portalview";
+    public static final String NOVA_GOVERN_CENTER = "nova-govern-center";
     public static final String NOVA_SERVICE_SEARCH = "nova-service-search";
     public static final String NOVA_SERVICE_MANAGE_COURSE = "nova-service-manage-course";
     public static final String NOVA_SERVICE_MANAGE_MEDIA = "nova-service-manage-media";
